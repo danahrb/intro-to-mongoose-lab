@@ -48,8 +48,7 @@ const createCustomer= async() =>{
     const name = prompt('Enter the customer name: ');
     const age = prompt('Enter the customer age: ');
   
-    const customer = new Customer({ name, age });
-    await customer.save();
+    const customer =  Customer.create({ name, age });
 
     console.log('Customer created successfully.');
 }
@@ -75,11 +74,9 @@ const updateCustomer= async() =>{
 
   const newName = prompt(`What is the customers new name? (current: ${customer.name})`);
   const newAge = prompt(`What is the customers new age? (current: ${customer.age})`);
-   
-  customer.name = newName;
-   customer.age = newAge;
 
-  await customer.save();
+
+  await Customer.create({newName, newAge});
 
   console.log('Updated Customers List.');
   customers.forEach((customer) => {
